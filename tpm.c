@@ -48,8 +48,9 @@ int main(void){
     t = 0;
     dt = 0.001;
 
-    int i;
-    for(i=0;i<3000;i++){
+    int i=0;
+    while(r > 0){
+        i += 1;
         P = YoungLaplace(P0, lsur, r);
         V = SphereVolume(pie, r);
         A = SphereSurface(pie, r);
@@ -66,7 +67,7 @@ int main(void){
         t = t + dt;
         r = r + dr * dt;
     }
-
+    printf("\n%iTimes Calculation Complete.\n", i);
 }
 
 double YoungLaplace(double P0, double lsur, double r){
