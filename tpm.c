@@ -16,23 +16,7 @@ int main(void){
     double e = 0.0000000000088542;
     double vol = 0;                     /* Surface Voltage of bubble */
 
-    double r;
-    double t;
-    double dt;
-    double P;
-    double V;
-    double A;
-    double n;
-    double c;
-    double d;
-    double U;
-    double kl;
-    double L;       /* L means Boundary Film */
-    double VL;
-    double cL;
-    double PL;
-    double N;
-    double dr;
+    double r, t, dt, P, V, A, n, c, d, U, kl, L, VL, cL, PL, N, dr;         /* L means Boundary Film */
 
     double YoungLaplace(double P0, double lsur, double r);
     double SphereVolume(double pie, double r);
@@ -73,7 +57,6 @@ int main(void){
 
     fprintf(fp, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n", l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13);
 
-
     r = 0.00001;
     t = 0;
 
@@ -108,6 +91,7 @@ int main(void){
     printf("%sファイル書き込みが完了しました\n", fname);
     return 0;
 }
+
 
 double YoungLaplace(double P0, double lsur, double r){
     double P;
