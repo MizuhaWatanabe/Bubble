@@ -49,8 +49,29 @@ int main(void){
     double ElectroCapillary(double e, double vol, double r);                                                /* ElectroCapillary Pressure */
 
 
+    FILE *fp;
+    char *fname = "bubble.csv";
+    char *l1 = "time[s]";
+    char *l2 = "dr/dt[m/s]";
+    char *l3 = "radius[m]";
+    char *l4 = "pressure[atm]";
+    char *l5 = "volume[m3]";
+    char *l6 = "surface[m2]";
+    char *l7 = "n[mol]";
+    char *l8 = "conc.[mol/m3]";
+    char *l9 = "dens.[kg/m3]";
+    char *l10 = "velocity[m/s]";
+    char *l11 = "kl[m/s]";
+    char *l12 = "trans.[mol/s]";
+    char *l13 = "Henry[atm]";
 
-    printf("time[s]        dr/dt[m/s]      radius[m]      pressure[atm]  volume[m3]     surface[m2]    n[mol]         conc.[mol/m3]  dens.[kg/m3]   velocity[m/s]  kl[m/s]        trans.[mol/s]  Henry[atm]\n");
+    fp = fopen(fname, "w");
+    if(fp == NULL){
+        printf("%sファイルが開けません\n", fname);
+        return -1;
+    }
+
+    fprintf(fp, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n", l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13);
 
 
     r = 0.00001;
@@ -78,14 +99,14 @@ int main(void){
         PL = 0.2 + Henry(H, cL);
 
 
-        printf("%e   %e   %e   %e   %e   %e   %e   %e   %e   %e   %e   %e   %e\n", t, dr, r, P, V, A, n, c, d, U, kl, N, PL);
+        fprintf(fp, "%e,%e,%e,%e,%e,%e,%e,%e,%e,%e,%e,%e,%e\n", t, dr, r, P, V, A, n, c, d, U, kl, N, PL);
         t = t + dt;
         r = r + dr * dt;
     }
 
-    printf("\ntime[s]        dr/dt[m/s]      radius[m]      pressure[atm]  volume[m3]     surface[m2]    n[mol]         conc.[mol/m3]  dens.[kg/m3]   velocity[m/s]  kl[m/s]        trans.[mol/s]  Henry[atm]\n");
-
-    printf("\n%iTimes Calculation Complete.\n", i);
+    fclose(fp);
+    printf("%sファイル書き込みが完了しました\n", fname);
+    return 0;
 }
 
 double YoungLaplace(double P0, double lsur, double r){
