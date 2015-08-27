@@ -4,7 +4,7 @@
 
 int main(void){
     double const u0 = 0.1;
-    double const a = 4;
+    double const a = 1;
     int const dt = 1;
     int const T = 1000;
     double const du = 5.0e-2;
